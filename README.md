@@ -1,5 +1,8 @@
 # Hyper-Model
 
+> **Open Source Side (OSS)**  
+> This is the open source implementation of the Hyper Model, designed to mirror the functionality of the proprietary version while providing greater customization and transparency. This OSS version allows users to modify, extend, and adapt the model according to their specific needs.
+
 ## Overview
 
 The Hyper Model represents the cutting edge of growth-oriented trading intelligence, leveraging ensemble learning to capitalize on low volatility market conditions. This model identifies optimal entry and exit points during stable market phases, maximizing returns when market sentiment is positive.
