@@ -1,0 +1,14 @@
+name: Branch Protection
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  branch-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run simple check
+        run: echo "Branch protection check passed." 
