@@ -97,3 +97,4 @@ venv.bak/
 .pytype/
 # Cython debug symbols
 cython_debug/
+config.py
