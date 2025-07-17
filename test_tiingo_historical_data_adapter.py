@@ -1,8 +1,8 @@
 from datetime import datetime
-from adapters.historical_data_adapters.tiingo_adapter import TiingoAdapter
+from adapters.historical_data_adapters.tiingo_historical_data_adapter import TiingoHistoricalDataAdapter
 
 if __name__ == "__main__":
-    adapter = TiingoAdapter()
+    adapter = TiingoHistoricalDataAdapter()
     tickers = ["AAPL", "MSFT", "TSLA", "META"]
     increments = ["daily", "weekly", "monthly", "annually"]
     start_date = datetime(2023, 1, 1)

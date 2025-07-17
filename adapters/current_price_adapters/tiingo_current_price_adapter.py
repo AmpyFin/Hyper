@@ -8,7 +8,7 @@ class TiingoCurrentPriceAdapter(CurrentPriceAdapter):
 
     def get_current_price(self, ticker: str) -> float:
         """
-        Returns the latest available closing price for the given ticker as a float.
+        Returns the latest available closing price for the given ticker as a float rounded to 2 decimal places.
         If no price is available, returns None.
         """
         url = self.BASE_URL.format(ticker=ticker)
@@ -24,7 +24,7 @@ class TiingoCurrentPriceAdapter(CurrentPriceAdapter):
                 # Tiingo returns 'close' as the closing price
                 price = latest.get('close')
                 if price is not None:
-                    return float(price)
+                    return round(float(price), 2)
                 else:
                     logging.info(f"No 'close' price found for {ticker}")
                     return None
