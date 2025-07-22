@@ -10,7 +10,6 @@ class YFinanceHistoricalDataAdapter(HistoricalDataAdapter):
         'daily': '1d',
         'weekly': '1wk',
         'monthly': '1mo',
-        'annually': '1mo',  # fetch monthly, aggregate to annual
     }
 
     def get_historical_data(
@@ -23,9 +22,10 @@ class YFinanceHistoricalDataAdapter(HistoricalDataAdapter):
         """
         Fetch historical price data from yfinance for a given ticker and date range.
         Returns a list of dicts with columns: DateTime, open, close, high, low (all floats rounded to 2 decimal places), volume (int).
-        Only supports tick_increment: 'daily', 'weekly', 'monthly', 'annually'.
-        For 'annually', aggregates monthly data to annual (last close per year).
+        Only supports tick_increment: 'daily', 'weekly', 'monthly'.
         """
+        if tick_increment == 'annually':
+            raise ValueError("yfinance does not support 'annually' tick_increment. Use 'daily', 'weekly', or 'monthly'.")
         yf_freq = self.TICKER_FREQ_MAP.get(tick_increment)
         if yf_freq is None:
             raise ValueError(f"Invalid tick_increment '{tick_increment}'. Must be one of {list(self.TICKER_FREQ_MAP.keys())}.")
@@ -35,12 +35,6 @@ class YFinanceHistoricalDataAdapter(HistoricalDataAdapter):
             if hist.empty:
                 logging.info(f"No historical data returned for {ticker} with increment {tick_increment}")
                 return []
-            if tick_increment == 'annually':
-                # Aggregate monthly data to annual (last close per year)
-                hist = hist.copy()
-                hist['Year'] = hist.index.year
-                annual = hist.groupby('Year').apply(lambda df: df.iloc[-1])
-                hist = annual
             # Standardize and round data
             hist = hist.reset_index()
             standardized = []
