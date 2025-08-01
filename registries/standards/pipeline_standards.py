@@ -1,0 +1,1 @@
+# what functions to be called for each client's pipeline?
