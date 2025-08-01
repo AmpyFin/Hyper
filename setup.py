@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="hyper-model",
+    name="hyper-system",
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
@@ -14,7 +14,7 @@ setup(
     ],
     python_requires=">=3.9",
     author="Yeon Lee",
-    description="A financial data and modeling system",
+    description="An adaptive financial trading and analysis system",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Financial and Insurance Industry",
